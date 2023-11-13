@@ -73,9 +73,6 @@ class Ui_MainWindow(object):
         self.flag_img.setMidLineWidth(1)
         self.flag_img.setScaledContents(True)
         
-        
-        
-        
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(410, 80, 371, 351))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -172,7 +169,7 @@ class Ui_MainWindow(object):
         self.area.setText(str(data[self.result_key]["area"]))
         self.timezones.setText(str(data[self.result_key]["timezones"]))
         self.official_name_6.setText(str(data[self.result_key]["gini"]))
-        self.flag_img.setPixmap(QtGui.QPixmap(f"w40/{data[self.result_key]}.png"))
+        self.flag_img.setPixmap(QtGui.QPixmap(f"flags-img/{data[self.result_key]}.png"))
 
 
 
