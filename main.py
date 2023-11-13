@@ -62,6 +62,7 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(250, 30, 101, 41))
         self.pushButton.setObjectName("pushButton")   
         
+        # flag inside the ui but doesn't work
         self.flag_img = QtWidgets.QLabel(self.centralwidget)
         self.flag_img.setObjectName("flag_img")
         self.flag_img.setGeometry(QtCore.QRect(640, 0, 141, 81))
