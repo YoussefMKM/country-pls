@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Countries"))
-        self.comboBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>test 123456789</p></body></html>"))
+        self.comboBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>you found me hehehehe</p></body></html>"))
         self.label.setText(_translate("MainWindow", "Please choose your country:"))
         self.groupBox.setTitle(_translate("MainWindow", "General information"))
         self.label_2.setText(_translate("MainWindow", "Official name:"))
@@ -155,26 +155,24 @@ class Ui_MainWindow(object):
                 self.result_key = key
                 break
             
-        self.official_name.setText(str(data[self.result_key]["official_name"]))
-        self.capital.setText(str(data[self.result_key]["capital"]))
-        self.region.setText(str(data[self.result_key]["region"]))
-        self.callingCode.setText(str(data[self.result_key]["callingCode"]))
-        
         #formatting population so it's easier to read
         self.fpopulation = data[self.result_key]["population"]
         self.fpopulation = f"{self.fpopulation:,}"
         self.fpopulation = self.fpopulation.replace(",", " ")
-        
         self.population.setText(str(self.fpopulation))
-        self.area.setText(str(data[self.result_key]["area"]))
+        
+        #formatting area so it's easier to read
+        self.farea = data[self.result_key]["area"]
+        self.farea = f"{self.farea:,}"
+        self.farea = self.farea.replace(",", " ")
+        self.area.setText(str(self.farea) +" km²")
+        
         self.timezones.setText(str(data[self.result_key]["timezones"]))
         self.gini.setText(str(data[self.result_key]["gini"]))
-        self.pushButton.clicked.connect(self.addimage)
         
-    def addimage(self):
+        #displays the image of the selected country when PushButton is clicked
         self.img_label.setPixmap(QPixmap(f"flags-img/{data[self.result_key]["alpha2Code"]}.png"))
         
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
