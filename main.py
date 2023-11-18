@@ -155,6 +155,11 @@ class Ui_MainWindow(object):
                 self.result_key = key
                 break
             
+        self.official_name.setText(str(data[self.result_key]["official_name"]))
+        self.capital.setText(str(data[self.result_key]["capital"]))
+        self.region.setText(str(data[self.result_key]["region"]))
+        self.callingCode.setText(str(data[self.result_key]["callingCode"]))
+        
         #formatting population so it's easier to read
         self.fpopulation = data[self.result_key]["population"]
         self.fpopulation = f"{self.fpopulation:,}"
