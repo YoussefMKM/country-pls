@@ -7,3 +7,4 @@
 
 ## How to use 
 Simply select the desired country from the drop down menu to know more informations about whatever country
+![]https://imgur.com/a/9qID2Wu
