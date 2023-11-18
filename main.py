@@ -170,7 +170,7 @@ class Ui_MainWindow(object):
         self.timezones.setText(str(data[self.result_key]["timezones"]))
         self.gini.setText(str(data[self.result_key]["gini"]))
         self.pushButton.clicked.connect(self.addimage)
-        print(data[self.result_key]["alpha2Code"])
+        
     def addimage(self):
         self.img_label.setPixmap(QPixmap(f"flags-img/{data[self.result_key]["alpha2Code"]}.png"))
         
