@@ -7,4 +7,4 @@
 
 ## How to use 
 Simply select the desired country from the drop down menu to know more informations about whatever country
-![]
+![]https://github.com/YoussefMKM/countries-project/blob/main/preview.gif
