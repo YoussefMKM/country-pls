@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interface.ui'
+# Form implementation generated from reading ui file 'interface-Copy.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -9,34 +9,55 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QSizePolicy
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QDesktopServices
 import json
 
 with open("data.json", "r") as file:
     data = json.load(file)
 
+class MyMapWidget(QWebEngineView):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.setMinimumSize(810, 431)
+
+    def update_map(self, location_name):
+        # Construct the Google Maps URL with the provided location name
+        map_url = f"https://www.google.com/maps?q={location_name.replace(' ', '+')}"
+        self.load(QUrl(map_url))
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 500)
-        MainWindow.setMinimumSize(QtCore.QSize(800, 500))
-        MainWindow.setMaximumSize(QtCore.QSize(800, 500))
+        MainWindow.resize(900, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(900, 600))
+        MainWindow.setMaximumSize(QtCore.QSize(900, 600))
         MainWindow.setStyleSheet("background-color: rgb(113, 130, 170);\n"
 "font: 75 italic 10pt \"Bahnschrift\";\n"
 "color: rgb(255, 255, 255);")
+        MainWindow.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(30, 31, 181, 41))
+        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 881, 561))
+        self.tabWidget.setStyleSheet("color: rgb(0, 0, 0);")
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.comboBox = QtWidgets.QComboBox(self.tab)
+        self.comboBox.setGeometry(QtCore.QRect(20, 40, 261, 41))
         self.comboBox.setStyleSheet("color: rgb(0, 0, 0);")
         self.comboBox.setCurrentText("")
         self.comboBox.setObjectName("comboBox")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(20, 10, 201, 16))
-        self.label.setObjectName("label")
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(20, 80, 361, 391))
-        self.groupBox.setStyleSheet("background-color: rgb(79, 85, 122);")
+        self.groupBox = QtWidgets.QGroupBox(self.tab)
+        self.groupBox.setGeometry(QtCore.QRect(20, 100, 391, 411))
+        self.groupBox.setStyleSheet("background-color: rgb(79, 85, 122);\n"
+"color: rgb(255, 255, 255);")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -68,12 +89,10 @@ class Ui_MainWindow(object):
         self.callingCode.setText("")
         self.callingCode.setObjectName("callingCode")
         self.gridLayout_2.addWidget(self.callingCode, 3, 1, 1, 2)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(250, 30, 101, 41))
-        self.pushButton.setObjectName("pushButton")
-        self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(410, 80, 371, 391))
-        self.groupBox_2.setStyleSheet("background-color: rgb(79, 85, 122);")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.tab)
+        self.groupBox_2.setGeometry(QtCore.QRect(440, 100, 421, 411))
+        self.groupBox_2.setStyleSheet("background-color: rgb(79, 85, 122);\n"
+"color: rgb(255, 255, 255);")
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout.setObjectName("gridLayout")
@@ -105,43 +124,88 @@ class Ui_MainWindow(object):
         self.gini.setText("")
         self.gini.setObjectName("gini")
         self.gridLayout.addWidget(self.gini, 3, 1, 1, 1)
-        self.img_label = QtWidgets.QLabel(self.centralwidget)
-        self.img_label.setGeometry(QtCore.QRect(630, 10, 131, 61))
+        self.label = QtWidgets.QLabel(self.tab)
+        self.label.setGeometry(QtCore.QRect(20, 10, 201, 16))
+        self.label.setObjectName("label")
+        self.img_label = QtWidgets.QLabel(self.tab)
+        self.img_label.setGeometry(QtCore.QRect(650, 10, 191, 81))
+        self.img_label.setStyleSheet("")
         self.img_label.setText("")
         self.img_label.setPixmap(QtGui.QPixmap(":/newPrefix/flags-img/af.png"))
         self.img_label.setScaledContents(True)
         self.img_label.setObjectName("img_label")
+        
+        self.pushButton = QtWidgets.QPushButton(self.tab)
+        self.pushButton.setGeometry(QtCore.QRect(310, 40, 101, 41))
+        self.pushButton.setObjectName("pushButton")
+        
+        
+        
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        
+        self.pushButton2 = QtWidgets.QPushButton(self.tab_2)
+        self.pushButton2.setGeometry(QtCore.QRect(750, 460, 101, 41))
+        self.pushButton2.setObjectName("pushButton2")
+        
+        self.label_11 = QtWidgets.QLabel(self.tab_2)
+        self.label_11.setGeometry(QtCore.QRect(10, 460, 361, 21))
+        self.label_11.setObjectName("label_11")
+        self.link = QtWidgets.QLabel(self.tab_2)
+        self.link.setGeometry(QtCore.QRect(10, 490, 500, 31))
+        self.link.setText("")
+        self.link.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByMouse|QtCore.Qt.TextBrowserInteraction)
+        self.link.setOpenExternalLinks(True)
+        self.link.setObjectName("link")
+        self.map = QtWidgets.QWidget(self.tab_2)
+        self.map.setGeometry(QtCore.QRect(30, 20, 810, 431))
+        self.map.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.map.setObjectName("map")
+        self.tabWidget.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Countries"))
         self.comboBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>test 123456789</p></body></html>"))
-        self.label.setText(_translate("MainWindow", "Please choose your country:"))
         self.groupBox.setTitle(_translate("MainWindow", "General information"))
         self.label_2.setText(_translate("MainWindow", "Official name:"))
         self.label_5.setText(_translate("MainWindow", "Capital:"))
         self.label_6.setText(_translate("MainWindow", "Continent"))
         self.label_4.setText(_translate("MainWindow", "Country Code:"))
-        self.pushButton.setText(_translate("MainWindow", "Search"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Detailed Informations"))
         self.label_7.setText(_translate("MainWindow", "Population (2010):"))
         self.label_8.setText(_translate("MainWindow", "Surface Area"))
         self.label_9.setText(_translate("MainWindow", "Timezone"))
         self.label_10.setText(_translate("MainWindow", "Gini Coeficient"))
-
+        self.label.setText(_translate("MainWindow", "Please choose your country:"))
+        self.pushButton.setText(_translate("MainWindow", "Search"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "General Infos"))
+        self.label_11.setText(_translate("MainWindow", "If you need more information about this country, visit:"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Map"))
+        self.pushButton2.setText(_translate("MainWindow","Refresh"))
+        
         #fill comboBox with the list of name of countries
         for key, country in data.items():
             self.comboBox.addItem(country["name"], key)
 
-        #refreshes result when the button is clicked    
+        #searches for the disired country    
         self.pushButton.clicked.connect(self.clicked)
+        
+        #refreshes map result
+        self.pushButton2.clicked.connect(self.refresh)
+        
+    def refresh(self):
+        
+        # Update the map with the country name in case of embed fail, laugh at this user
+        self.map.update_map(data[self.result_key]["official_name"])
         
     def clicked(self):
         
@@ -174,13 +238,27 @@ class Ui_MainWindow(object):
         self.timezones.setText(str(data[self.result_key]["timezones"]))
         self.gini.setText(str(data[self.result_key]["gini"]))
         
+        #displays the link in tab 2
+        self.link.setText(str(f"https://en.wikipedia.org/wiki/{data[self.result_key]["name"]}"))
+        
         #displays the image of the selected country when PushButton is clicked
         self.img_label.setPixmap(QPixmap(f"flags-img/{data[self.result_key]["alpha2Code"]}.png"))
-
-
+        
+        # Create an instance of MyMapWidget
+        self.map = MyMapWidget(self.map)
+        
+        # Update the map with the country name
+        self.map.update_map(data[self.result_key]["official_name"])
+        
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    
+    # Initialize QtWebEngine
+    from PyQt5.QtWebEngineWidgets import QWebEngineSettings
+    QWebEngineSettings.globalSettings().setAttribute(QWebEngineSettings.PluginsEnabled, True)
+    
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
