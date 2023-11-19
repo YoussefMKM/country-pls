@@ -15,7 +15,6 @@ import json
 with open("data.json", "r") as file:
     data = json.load(file)
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -33,10 +32,10 @@ class Ui_MainWindow(object):
         self.comboBox.setCurrentText("")
         self.comboBox.setObjectName("comboBox")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(20, 10, 260, 16))
+        self.label.setGeometry(QtCore.QRect(20, 10, 201, 16))
         self.label.setObjectName("label")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(20, 80, 361, 351))
+        self.groupBox.setGeometry(QtCore.QRect(20, 80, 361, 391))
         self.groupBox.setStyleSheet("background-color: rgb(79, 85, 122);")
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.groupBox)
@@ -73,7 +72,7 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(250, 30, 101, 41))
         self.pushButton.setObjectName("pushButton")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(410, 80, 371, 351))
+        self.groupBox_2.setGeometry(QtCore.QRect(410, 80, 371, 391))
         self.groupBox_2.setStyleSheet("background-color: rgb(79, 85, 122);")
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox_2)
@@ -107,7 +106,7 @@ class Ui_MainWindow(object):
         self.gini.setObjectName("gini")
         self.gridLayout.addWidget(self.gini, 3, 1, 1, 1)
         self.img_label = QtWidgets.QLabel(self.centralwidget)
-        self.img_label.setGeometry(QtCore.QRect(644, 5, 151, 71))
+        self.img_label.setGeometry(QtCore.QRect(630, 10, 131, 61))
         self.img_label.setText("")
         self.img_label.setPixmap(QtGui.QPixmap(":/newPrefix/flags-img/af.png"))
         self.img_label.setScaledContents(True)
@@ -123,7 +122,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Countries"))
-        self.comboBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>you found me hehehehe</p></body></html>"))
+        self.comboBox.setToolTip(_translate("MainWindow", "<html><head/><body><p>test 123456789</p></body></html>"))
         self.label.setText(_translate("MainWindow", "Please choose your country:"))
         self.groupBox.setTitle(_translate("MainWindow", "General information"))
         self.label_2.setText(_translate("MainWindow", "Official name:"))
@@ -136,7 +135,7 @@ class Ui_MainWindow(object):
         self.label_8.setText(_translate("MainWindow", "Surface Area"))
         self.label_9.setText(_translate("MainWindow", "Timezone"))
         self.label_10.setText(_translate("MainWindow", "Gini Coeficient"))
-        
+
         #fill comboBox with the list of name of countries
         for key, country in data.items():
             self.comboBox.addItem(country["name"], key)
@@ -177,7 +176,8 @@ class Ui_MainWindow(object):
         
         #displays the image of the selected country when PushButton is clicked
         self.img_label.setPixmap(QPixmap(f"flags-img/{data[self.result_key]["alpha2Code"]}.png"))
-        
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
