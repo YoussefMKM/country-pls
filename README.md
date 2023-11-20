@@ -10,7 +10,8 @@ Simply select the desired country from the drop down menu to know more informati
 ![](preview.gif) <br>
 __Note__: <br>
 You would need an internet connexion to use the History and Map tab.<br>
-Also please beware that the Google embed in the *Map* tab can sometimes behave unexpectadly. Use the Refresh button to fix it.<br>
+Please beware that the Google embed in the *Map* tab can sometimes behave unexpectadly. Use the Refresh button to fix it.<br>
+In the *Map* tab, the language of the google embed depends on your current region of your ip adress. For example if you were in japan, the language would change to japanese unless you use a VPN.
 
 ## Overview
 country_pls has 3 tabs at the moment: General infos, History and Map.<br>
