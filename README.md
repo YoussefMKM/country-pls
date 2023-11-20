@@ -1,4 +1,4 @@
-# countries-project
+# country_pls
 
 ## How to install
 1. You need to install the latest version of python. Remember to add python to PATH during the installation. 
