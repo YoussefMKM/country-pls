@@ -5,6 +5,10 @@
 2. In the terminal, type ``pip install PyQt5 PyQtWebEngine requests``<br>
 3. Clone the repository, then open the terminal in that same directory and type ``python main.py``<br>
 
+OR
+
+simply go to the ![latest release and download the zip file](https://github.com/YoussefMKM/country-pls/releases/download/stable/country_pls_v1.0.0.zip)
+
 ## How to use 
 Simply select the desired country from the drop down menu to know more informations about it.<br>
 ![](preview.gif) <br>
