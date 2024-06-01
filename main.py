@@ -274,25 +274,20 @@ class Ui_MainWindow(object):
         if requests.get(url).status_code == 200:
             soup = BeautifulSoup(requests.get(url).text, 'html.parser')
 
-            # Find the <h2> tag with the text 'History'
-            history_heading = soup.find('span', id="History").parent
-            
-            if history_heading:
+            try:
+                # Find the <h2> tag with the text 'History'
+                history_heading = soup.find('span', id="History").parent
                 # Get the next sibling, which is the first paragraph after the <h2> tag
                 first_paragraph = history_heading.find_next_sibling('p')
-                if first_paragraph:
-                    print("Paragraph found")
-                    string = first_paragraph.get_text()
-                    pattern = re.compile(r'\[\d+\]')
-                    result = re.sub(pattern, '', string)
-                    self.pushButton.setText("Search")
-                    return(result)
-                else:
-                    print("No paragraph found after the 'History' heading.")
-                    return "No paragraph found after the 'History' heading."
-            else:
-                print("No 'History' heading found on the page.")
-                return "No 'History' heading found on the page"
+                print("Paragraph found")
+                string = first_paragraph.get_text()
+                pattern = re.compile(r'\[\d+\]')
+                result = re.sub(pattern, '', string)
+                self.pushButton.setText("Search")
+                return(result)
+            except:
+                return print("No paragraph found after the 'History' heading.")
+
         else:
             print(f"Failed to retrieve the webpage. Status Code: {requests.get(url).status_code}")
             return f"Failed to retrieve the webpage. Status Code: {requests.get(url).status_code}"
